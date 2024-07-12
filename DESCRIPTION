@@ -28,6 +28,8 @@ Imports:
     MASS (>= 7.3),
     gp (>= 1.0),
     stats,
-    utils
+    utils,
+    future,
+    future.apply
 URL: https://github.com/GeorgeKoliopanos/modgo
 BugReports: https://github.com/GeorgeKoliopanos/modgo/issues
