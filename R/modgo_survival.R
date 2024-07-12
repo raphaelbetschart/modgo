@@ -286,19 +286,19 @@ modgo_survival <-
     }
     modgo_no_event <- do.call(modgo, .args_no_event)
     status <- rep(0,dim(modgo_no_event$simulated_data[[1]])[1])
-    modgo_no_event$simulated_data <- lapply(modgo_no_event$simulated_data,
+    modgo_no_event$simulated_data <- future_lapply(modgo_no_event$simulated_data,
                                             FUN = function(x) add_status(x, status))
     
 
     modgo_event <- do.call(modgo, .args_event)
     status <- rep(1,dim(modgo_event$simulated_data[[1]])[1])
-    modgo_event$simulated_data <- lapply(modgo_event$simulated_data,
+    modgo_event$simulated_data <- future_lapply(modgo_event$simulated_data,
                                          FUN = function(x) add_status(x, status))
     
-    Simulated_Datasets <- lapply(1:nrep,
+    Simulated_Datasets <- future_lapply(1:nrep,
                                  FUN = function(x) x = rbind(modgo_no_event$simulated_data[[x]],
                                                              modgo_event$simulated_data[[x]]))
-    Correlations_matrices <- lapply(Simulated_Datasets,
+    Correlations_matrices <- future_lapply(Simulated_Datasets,
                                  FUN = function(x) x = cor(x))
     Correlations_matrices[["Mean"]] <- Reduce('+', Correlations_matrices)/nrep
     
