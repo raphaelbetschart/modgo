@@ -28,7 +28,7 @@ Sigma_calculation <- function (data,
   # Rank transform original data
   data <- data[,variables]
   df_rbi <-
-    as.data.frame(do.call(cbind, lapply(data, function (x)
+    as.data.frame(do.call(cbind, future_lapply(data, function (x)
       rbi_normal_transform(x, ties_method = ties_method))))
   # Calculate correlation matrix
   Sigma <- cov(df_rbi)
