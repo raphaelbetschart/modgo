@@ -16,6 +16,8 @@ VignetteBuilder: knitr
 License: GPL (>= 3) + file LICENSE
 Depends:
     R (>= 4.1)
+SystemRequirements:
+    gsl
 Imports:
     ggplot2 (>= 3.4.0),
     patchwork (>= 1.1.2),
